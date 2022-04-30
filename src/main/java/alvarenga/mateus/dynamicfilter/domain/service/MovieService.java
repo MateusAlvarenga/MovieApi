@@ -1,6 +1,6 @@
 package alvarenga.mateus.dynamicfilter.domain.service;
 
-import alvarenga.mateus.dynamicfilter.domain.SpecificationBuilder.SpecificationBuilder;
+
 import alvarenga.mateus.dynamicfilter.domain.filter.MovieFilter;
 import alvarenga.mateus.dynamicfilter.domain.model.entity.Movie;
 import alvarenga.mateus.dynamicfilter.domain.repository.MovieRepository;
@@ -16,12 +16,7 @@ public class MovieService {
     @Autowired private MovieRepository movieRepository;
 
     public Page<Movie> readAll(MovieFilter movieFilter, Pageable pageable){
-        Specification<?> movieSpecification = SpecificationBuilder.build(movieFilter, pageable);
-
-        return null;
-//        Page<Movie> moviePage = movieRepository.findAll((Specification<Movie>) movieSpecification, pageable);
-//
-//        return moviePage;
+        return movieRepository.findAll((Specification<Movie>) movieFilter.getSpecification(), pageable);
     }
 
 }
