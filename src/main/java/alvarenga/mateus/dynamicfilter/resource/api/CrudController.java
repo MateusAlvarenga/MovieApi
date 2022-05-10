@@ -81,7 +81,7 @@ CrudController <T ,S extends CrudService,IDTYPE,FILTER extends Filter,INPUT,OUTP
      * @return the response entity
      */
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody INPUT entity){
+    public ResponseEntity<?> update(@RequestBody T entity){
         return  ResponseEntity.ok(service.save(entity));
     }
 

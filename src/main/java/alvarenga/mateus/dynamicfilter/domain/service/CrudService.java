@@ -76,7 +76,8 @@ public abstract class CrudService
      * @return the t
      */
     public T save(INPUT entity){
-        T savedEntity = (T) repository.save(entity);
+        T entityToBeSaved = modelMapper.map(entity,getEntityType());
+        T savedEntity = (T) repository.save(entityToBeSaved);
         return modelMapper.map(savedEntity, getOutputType());
     }
 
@@ -130,5 +131,10 @@ public abstract class CrudService
     protected Class<T> getOutputType(){
         ParameterizedType types = (ParameterizedType) this.getClass().getGenericSuperclass();
         return (Class<T>) types.getActualTypeArguments()[5];
+    }
+
+    protected Class<T> getEntityType(){
+        ParameterizedType types = (ParameterizedType) this.getClass().getGenericSuperclass();
+        return (Class<T>) types.getActualTypeArguments()[0];
     }
 }
