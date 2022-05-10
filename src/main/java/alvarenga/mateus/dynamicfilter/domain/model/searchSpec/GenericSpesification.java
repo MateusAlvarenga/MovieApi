@@ -11,24 +11,42 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Generic spesification.
+ *
+ * @param <T> the type parameter
+ */
 @Getter
 public class GenericSpesification<T> implements Specification<T> {
 
     private static final long serialVersionUID = 1900581010229669687L;
 
     private List<SearchCriteria> list;
-    
+
     private List<JoinCriteria> listJoin;
 
+    /**
+     * Instantiates a new Generic spesification.
+     */
     public GenericSpesification() {
         this.list = new ArrayList<>();
         this.listJoin = new ArrayList<JoinCriteria>();
     }
 
+    /**
+     * Add.
+     *
+     * @param criteria the criteria
+     */
     public void add(SearchCriteria criteria) {
         list.add(criteria);
     }
 
+    /**
+     * Add join.
+     *
+     * @param JoinCriteria the join criteria
+     */
     public void addJoin(JoinCriteria JoinCriteria) {
         listJoin.add(JoinCriteria);
     }
